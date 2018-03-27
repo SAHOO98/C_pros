@@ -1,16 +1,19 @@
 #include <stdio.h>
-#include <math.h>
-int main() {
-  unsigned long S,T,P,X,Y;
-  double e;
-  scanf("%d%d%d%d%d",&S,&T,&P,&X,&Y);
 
-  e = (T+P*Y-S)/(X+Y);
-  if(e ==(int)e){
-    printf("%d\n",(int)e );
-  }
-  else {
-    printf("%d\n",-1 );
+int main() {
+  int i,s,k,a = 1;
+
+  for (i = 1; i <=5; i++){
+    for (s = 5; s >i; s--)
+      printf(" ");
+    for (k = 1; k <= a; k++) {
+      if(k<=(a+1)/2)
+        printf("%d",k );
+      else
+      printf("%d", a-k+1);
+    }
+    a+=2;
+    printf("\n");
   }
   return 0;
 }

@@ -48,6 +48,10 @@ Node* get_node(int data){
     }
   }
 }*/
+void get_min(Node *current){
+
+  if(current->x<=current->right)
+}
 void insert_recur(Node *root, int data){
   current = root;
   if(current == NULL){
