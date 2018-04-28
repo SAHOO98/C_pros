@@ -8,7 +8,7 @@ void swap(int *x,int *y) {
   *y = t;
 }
 int main() {
-  int ar[] = {5,8,9,2,10,10,3,6,7};
+  int ar[] = {5,1,2,8,9,2,10,10,3,6,7};
   int i,sorted;
   //sorting starts
   while (1) {

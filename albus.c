@@ -1,19 +1,18 @@
 #include <stdio.h>
+#include <malloc.h>
+typedef struct p{
+  int x;
+  int y;
+}POINT;
+void getPoint(POINT **t) {
+  *t = (POINT *)malloc(sizeof(POINT));
+  (*t)->x = 25;
+  (*t)->y = 36;
+}
 
 int main() {
-  int i,s,k,a = 1;
+  POINT *p1;
+  getPoint(&p1);
 
-  for (i = 1; i <=5; i++){
-    for (s = 5; s >i; s--)
-      printf(" ");
-    for (k = 1; k <= a; k++) {
-      if(k<=(a+1)/2)
-        printf("%d",k );
-      else
-      printf("%d", a-k+1);
-    }
-    a+=2;
-    printf("\n");
-  }
-  return 0;
+  printf("x = %d\ty = %d\n",p1->x,p1->y );
 }
