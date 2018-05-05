@@ -71,16 +71,20 @@ void help(){
   printf("%s\n",HELP);
 }
 int main() {
-  int ch = 5;
+  int ch = 5,c;
   char *t;
   do{
     printf("Press 'r' to reset the highest score.\n");
-    if('r' == getchar())
+    int h;
+    if((h= getchar()) =='r')
       reset_score();
+    else if(h!=10)
+        getchar();
+
     person con;
     printf("[+][+][+]Welcome to C_Quiz 2018!![+][+][+]\n\n");
     help();
-    getchar();
+
     fgets(con.name,MAX_NAME_LENGHT,stdin);
     if((t = strchr(con.name,'\n')) !=NULL)
       *t = '\0';
@@ -88,6 +92,7 @@ int main() {
     con.second_total = 0;
     printf("Welcome %s!!\n",con.name);
     printf("[+][+]Press enter to continue to the quiz....\n");
+    getchar();
     getchar();
     for(int i = 0 ; i<FIRST_ROUND;i++){
       do{
@@ -103,22 +108,27 @@ int main() {
 
       }while(ch);
     }
+    printf("%d\n",con.warm_up_total);
     if(con.warm_up_total>=2){
       int f;
+      printf("You qualified..Horray!! :-) :-) \n");
       for (size_t i = 0; i < SECOND_ROUND; i++) {
+
         printf("[+]Enter  's' to view your score :\n");
         f = getchar();
+
+        while((c = getchar()) != '\n' && c != EOF)/* discard */ ;
+
         switch (f) {
           case 's':
             printf("[+]Current Score %d.\n[+]Highest Score %d.\n",show_score(&con),show_record());
-
         }
         do{
           printf("%s\n",second_round[i]);
           scanf("%d",&ch);
           if(ch>=1 && ch<=4){
             if (ch==correct_first[i])
-              con.warm_up_total++;
+              edit_score(&con);
             ch=0;
           }else{
               printf("[+]Wrong Choice!![+]\n");
