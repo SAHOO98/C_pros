@@ -80,9 +80,10 @@ int main() {
     person con;
     printf("[+][+][+]Welcome to C_Quiz 2018!![+][+][+]\n\n");
     help();
-    scanf("%s",con.name);
-  /*  if((t = strchr(con.name,'\n')) !=NULL)
-      *t = '\0';*/
+    getchar();
+    fgets(con.name,MAX_NAME_LENGHT,stdin);
+    if((t = strchr(con.name,'\n')) !=NULL)
+      *t = '\0';
     con.warm_up_total = 0;
     con.second_total = 0;
     printf("Welcome %s!!\n",con.name);
@@ -135,6 +136,9 @@ int main() {
       printf("Sorry!!Not qualified. :-( :-(\n");
     }
   printf("Is there another participants?(y/n)\n");
+  getchar();
 }while('y' == getchar());
+
+printf("Thank you. :-) ;-)\n");
   return 0;
 }
