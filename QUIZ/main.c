@@ -72,6 +72,7 @@ void help(){
 }
 int main() {
   int ch = 5;
+  char *t;
   do{
     printf("Press 'r' to reset the highest score.\n");
     if('r' == getchar())
@@ -79,29 +80,26 @@ int main() {
     person con;
     printf("[+][+][+]Welcome to C_Quiz 2018!![+][+][+]\n\n");
     help();
-
-    printf("[+]Enter name:\n");
-    fgets(con.name,MAX_NAME_LENGHT,stdin);
+    scanf("%s",con.name);
+  /*  if((t = strchr(con.name,'\n')) !=NULL)
+      *t = '\0';*/
     con.warm_up_total = 0;
     con.second_total = 0;
+    printf("Welcome %s!!\n",con.name);
     printf("[+][+]Press enter to continue to the quiz....\n");
     getchar();
     for(int i = 0 ; i<FIRST_ROUND;i++){
       do{
         printf("%s\n",first_round[i]);
         scanf("%d",&ch);
-        switch (ch) {
-          case correct_first[i]:
-          con.warm_up_total++;
-          ch = 0;
-          break;
-          default:
-          if (ch!=2 && ch !=1) {
+        if(ch>=1 && ch<=2){
+          if (ch==correct_first[i])
+            con.warm_up_total++;
+          ch=0;
+        }else{
             printf("[+]Wrong Choice!![+]\n");
-          }else{
-            ch = 0;
-          }
         }
+
       }while(ch);
     }
     if(con.warm_up_total>=2){
@@ -117,17 +115,12 @@ int main() {
         do{
           printf("%s\n",second_round[i]);
           scanf("%d",&ch);
-          switch (ch) {
-            case correct_second[i]:
-            edit_score(&con);
-            ch = 0;
-            break;
-            default:
-            if (ch>4 && ch <1) {
+          if(ch>=1 && ch<=4){
+            if (ch==correct_first[i])
+              con.warm_up_total++;
+            ch=0;
+          }else{
               printf("[+]Wrong Choice!![+]\n");
-            }else{
-              ch = 0;
-            }
           }
         }while(ch);
       }
@@ -141,7 +134,7 @@ int main() {
     }else{
       printf("Sorry!!Not qualified. :-( :-(\n");
     }
-  printf("%s\n","Is there another participants??(y/n)\n");
+  printf("Is there another participants?(y/n)\n");
 }while('y' == getchar());
   return 0;
 }
