@@ -90,7 +90,7 @@ int main() {
     person con;
     printf("[+][+][+]Welcome to C_Quiz 2018!![+][+][+]\n\n");
     help();
-
+    printf("Enter your name: \n");
     fgets(con.name,MAX_NAME_LENGHT,stdin);
     if((t = strchr(con.name,'\n')) !=NULL)
       *t = '\0';
@@ -127,8 +127,8 @@ int main() {
           printf("%s\n",second_round[i]);
           scanf("%d",&ch);
           if(ch>=1 && ch<=4){
-            printf("%d\n",correct_second[i]);
-            printf("%d\n",ch);
+          //  printf("%d\n",correct_second[i]);
+            //printf("%d\n",ch);
             if (ch==correct_second[i])
               edit_score(&con);
             ch=0;
