@@ -55,7 +55,7 @@ const int correct_second[] = {SECOND_1_ANS,SECOND_2_ANS,SECOND_3_ANS,SECOND_4_AN
 int higest_score  = 0;
 
 int show_record(){
-  return higest_score;
+  return higest_score*100000;
 }
 
 int show_score(person *p){
