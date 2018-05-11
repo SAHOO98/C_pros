@@ -1,14 +1,18 @@
+/*Authors:- Saptasrhi Sahoo,Suvham Roy & Subhadip Chakraborti
+E-mail:- uzumaki.sahoo@gmail.com
+Contact Number:- +91 8918773321
+*/
 #include <stdio.h>
 #include <string.h>
 //constants
-#define MAX_NAME_LENGHT 100
-#define FIRST_ROUND 3
-#define SECOND_ROUND 6
+#define MAX_NAME_LENGHT 100 //Maximum Name string Lenght
+#define FIRST_ROUND 3       //Number of Questions for the first round
+#define SECOND_ROUND 6      //Number of questions for the second round
 
 //STDIN BUFFER CLEANER
-#define STDIN_FLUSH(c) while((c=getchar())!='\n' && c!=EOF)
+#define STDIN_FLUSH(c) while((c=getchar())!='\n' && c!=EOF) //Can be used as taking inputs from STDIN using getchar()
 
-//Questions for first Round
+//Questions and answers for first Round
 #define FIRST_1 "\nWhat type of pragramming Language is C:\n1.Object Oriented Programming Language\n2.Procedural Oriented Programming Language.\n"
 #define FIRST_1_ANS 2
 
@@ -18,7 +22,7 @@
 #define FIRST_3 "\nIs it possible to locate to a set of instructions with pointer in C:\n1:Yes\n2.No\n"
 #define FIRST_3_ANS 1
 
-//Questions for second Round
+//Questions and answers for second Round
 #define SECOND_1 "\nA C variable cannot start with :\n\n1.An alphabet\n2.A number\nC.3 special symbol other than underscore\n4.Both (2) and (3)\n"
 #define SECOND_1_ANS 3
 
@@ -40,37 +44,39 @@
 //Help message
 #define HELP "The first round is called the Warm-up Round.the\nsecond is the Challenge round. In the warm-up round, the user is asked a total\nof three simple questions and they must be able to answer at least two of them\ncorrectly to enter the next round. If the user is not capable of doing that, he is\nnot permitted to proceed further.\nIn the second and more interesting round of this quiz game in C, the user will\nbe asked questions continuously, and for each right answer given, they will earn\n$100,000!"
 
-typedef struct {
-  char name[MAX_NAME_LENGHT];
-  int warm_up_total ;
-  int second_total ;
+typedef struct {              //This structure is used to mantain the current person goin through the quiz
+  char name[MAX_NAME_LENGHT]; //Name of the pereson
+  int warm_up_total ;         //Score for first round
+  int second_total ;          //Score for second round
 }person;
 
-const char *first_round[] = {FIRST_1,FIRST_2,FIRST_3};
-const int correct_first[] = {FIRST_1_ANS,FIRST_2_ANS,FIRST_3_ANS};
+const char *first_round[] = {FIRST_1,FIRST_2,FIRST_3};              //Array of first round questions
+const int correct_first[] = {FIRST_1_ANS,FIRST_2_ANS,FIRST_3_ANS};  //Array of answers for first round questions
 
-const char *second_round[] = {SECOND_1,SECOND_2,SECOND_3,SECOND_4,SECOND_5,SECOND_6};
-const int correct_second[] = {SECOND_1_ANS,SECOND_2_ANS,SECOND_3_ANS,SECOND_4_ANS,SECOND_5_ANS,SECOND_6_ANS};
+const char *second_round[] = {SECOND_1,SECOND_2,SECOND_3,SECOND_4,SECOND_5,SECOND_6};                           //Array of second round questions
+const int correct_second[] = {SECOND_1_ANS,SECOND_2_ANS,SECOND_3_ANS,SECOND_4_ANS,SECOND_5_ANS,SECOND_6_ANS};   //Array of second round answers
 
-int higest_score  = 0;
+int higest_score  = 0; //to maintain the highest score through out the sessions
 
+//Funtion to show the highest score
 int show_record(){
   return higest_score*100000;
 }
-
+//Funtion to show the score of the current contestant
 int show_score(person *p){
   return 100000*(p->second_total);
 }
-
+//to edit the score
 void edit_score(person *p){
   p->second_total++;
   printf("%d\n",p->second_total);
 }
 
+//to reset the highest score
 void reset_score() {
   higest_score = 0;
 }
-
+//shows the help message
 void help(){
   printf("[+][+]HELP[+][+]\n");
   printf("%s\n",HELP);
@@ -87,12 +93,12 @@ int main() {
       }
 
 
-    person con;
+    person con;     //The present contestant
     printf("[+][+][+]Welcome to C_Quiz 2018!![+][+][+]\n\n");
     help();
     printf("Enter your name: \n");
     fgets(con.name,MAX_NAME_LENGHT,stdin);
-    if((t = strchr(con.name,'\n')) !=NULL)
+    if((t = strchr(con.name,'\n')) !=NULL)    //this is trimming the last charcter of the string and is being replavced by \0(null)
       *t = '\0';
     con.warm_up_total = 0;
     con.second_total = 0;
@@ -115,7 +121,7 @@ int main() {
       }while(ch);
     }
 
-    printf("[+]Your Total: %d [+].\n",con.warm_up_total);
+    printf("[+]Your First round Total: %d [+].\n",con.warm_up_total);
 
     if(con.warm_up_total>=2){
       printf("[+]You qualified..Horray!! :-) :-) \n");
@@ -140,7 +146,7 @@ int main() {
       }
 
 
-      if(con.second_total > higest_score)
+      if(con.second_total > higest_score)   //Determing the highest score
         higest_score = con.second_total;
 
         printf("[+]Your Score : %d\n",show_score(&con));
