@@ -1,25 +1,18 @@
 #include <stdio.h>
+#include "vector.h"
 
 int main()
 {
-    int n,i,k;
-    scanf("%d%d",&n,&k);
-    long s = 0;
-    long ar[n],ans;
-    for (i=0;i<n;i++){
-        ar[i] = (i+1)*5;
-    }
-    for(i=0;i<n;i++){
-        s = s+ar[i];
-        if(s+k<=240){
-        ans = i+1;
-        
-        if(s+k==240)
-        break;
+  int * v = Vector_Init(15);
+  //printf("%d\n",v[0]);
+  for(int i = 1;i<10;i++){
+    //printf("%d\n", len);
+    v = push(i+1,v);
+  }
+  for(int  i = 0; i<10;i++)
+    printf("%d\n", v[i]);
+  v = push(69,v); // :-D :-D
+  printf("%d\n",v[get_lenght(v)-1] );
 
-        }
-    }
-    printf("%d\n",ans);
-
-    return 0;
+  return 0;
 }
