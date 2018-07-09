@@ -2,6 +2,7 @@
 # Compiled source #
 ###################
 *.com
+*.out
 *.class
 *.dll
 *.exe
