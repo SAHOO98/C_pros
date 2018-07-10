@@ -44,8 +44,6 @@ int main(int argc, char const *argv[]) {
     print_Node(bp, bp);
     bp = pop(bp);
     print_stack(bp);
-    print_Node(bp, bp);
-
-
+    peek(bp);
     return 0;
 }
