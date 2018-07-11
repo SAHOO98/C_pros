@@ -82,11 +82,17 @@ Node* insert(int key, int data, Node *head){
     Node *n = new_Node(data);
 
     if(NOT(isEmpty(head))){
-        Node *t = findNode(--key, head);
-        Node *temp;
-        temp = t->next;
-        t->next = n;
-        n->next = temp;
+            if(key == 1){
+                n->next = head;
+                head = n;
+            }else{
+                Node *t = findNode(--key, head);
+                Node *temp;
+                temp = t->next;
+                t->next = n;
+                n->next = temp;
+            }
+
     }else{
         head = n;
     }
